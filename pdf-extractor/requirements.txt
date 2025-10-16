@@ -1,6 +1,4 @@
 streamlit
-pdfplumber
-
-openai
-langchain
+PyPDF2
+scikit-learn
 
