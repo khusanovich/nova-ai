@@ -1,21 +1,42 @@
 import streamlit as st
-from extract_utils import extract_text_from_pdf, find_answer
+import PyPDF2
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 
-st.title("Offline PDF → Q&A Bot")
+# --- PDF Text Extraktion ---
+def extract_text_from_pdf(file):
+    reader = PyPDF2.PdfReader(file)
+    text = ""
+    for page in reader.pages:
+        text += page.extract_text() or ""
+    return text
 
-uploaded_file = st.file_uploader("Wähle eine PDF-Datei aus", type=["pdf"])
+# --- Frage beantworten ---
+def answer_question(text, question):
+    paragraphs = [p.strip() for p in text.split("\n") if len(p.strip()) > 50]
+
+    if not paragraphs:
+        return "Kein relevanter Text gefunden."
+
+    docs = paragraphs + [question]
+    vectorizer = TfidfVectorizer().fit_transform(docs)
+    similarities = cosine_similarity(vectorizer[-1], vectorizer[:-1]).flatten()
+
+    best_match_index = similarities.argmax()
+    best_paragraph = paragraphs[best_match_index]
+    return f"🔍 Relevanteste Textstelle:\n\n{best_paragraph}"
+
+# --- Streamlit UI ---
+st.title("📘 Offline PDF-Q&A Tool")
+uploaded_file = st.file_uploader("Lade eine PDF hoch", type=["pdf"])
 
 if uploaded_file:
-    st.info("PDF wird verarbeitet...")
-    text = extract_text_from_pdf(uploaded_file)
-    st.success("PDF erfolgreich gelesen!")
+    with st.spinner("Extrahiere Text..."):
+        pdf_text = extract_text_from_pdf(uploaded_file)
 
-    st.subheader("Extrahierter Text")
-    st.text_area("Text", text, height=300)
+    st.success("Text erfolgreich extrahiert ✅")
 
-    # Q&A
-    question = st.text_input("Stelle eine Frage zum PDF-Inhalt:")
+    question = st.text_input("Frage zum Inhalt der PDF:")
     if question:
-        answer = find_answer(text, question)
-        st.subheader("Antwort")
-        st.write(answer)
+        answer = answer_question(pdf_text, question)
+        st.markdown(answer)
