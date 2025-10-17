@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>PDF Chatbot</title>
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        #chat { border: 1px solid #ccc; padding: 10px; height: 400px; overflow-y: scroll; margin-bottom: 10px; }
+        .message { margin: 5px 0; }
+        .user { color: blue; }
+        .bot { color: green; }
+    </style>
+</head>
+<body>
+    <h2>PDF Chatbot</h2>
+    <input type="file" id="pdfUpload" multiple>
+    <button onclick="uploadPDFs()">Upload PDFs</button>
+    <div id="chat"></div>
+    <input type="text" id="question" placeholder="Frage..." style="width:70%">
+    <button onclick="askQuestion()">Frage stellen</button>
+
+    <script src="/frontend/app.js"></script>
+</body>
+</html>

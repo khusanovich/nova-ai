@@ -1,0 +1,64 @@
+.
+├── README.md
+├── Zusammenfassung_erste_Konzepte.md
+├── app
+│   ├── app.py
+│   ├── extract_utils.py
+│   └── gemini_utils.py
+├── data
+│   ├── sample.pdf
+│   └── test
+│       └── Datasheet
+├── requirements.txt
+├── structure.txt
+└── venv
+    ├── bin
+    │   ├── Activate.ps1
+    │   ├── __pycache__
+    │   ├── activate
+    │   ├── activate.csh
+    │   ├── activate.fish
+    │   ├── distro
+    │   ├── dotenv
+    │   ├── dumppdf.py
+    │   ├── f2py
+    │   ├── httpx
+    │   ├── jsondiff
+    │   ├── jsonpatch
+    │   ├── jsonpointer
+    │   ├── jsonschema
+    │   ├── normalizer
+    │   ├── numpy-config
+    │   ├── openai
+    │   ├── pdf2txt.py
+    │   ├── pdfplumber
+    │   ├── pip
+    │   ├── pip3
+    │   ├── pip3.10
+    │   ├── pypdfium2
+    │   ├── pyrsa-decrypt
+    │   ├── pyrsa-encrypt
+    │   ├── pyrsa-keygen
+    │   ├── pyrsa-priv2pub
+    │   ├── pyrsa-sign
+    │   ├── pyrsa-verify
+    │   ├── python -> python3
+    │   ├── python3 -> /usr/bin/python3
+    │   ├── python3.10 -> python3
+    │   ├── streamlit
+    │   ├── streamlit.cmd
+    │   ├── tqdm
+    │   ├── watchmedo
+    │   └── websockets
+    ├── etc
+    │   └── jupyter
+    ├── include
+    │   └── site
+    ├── lib
+    │   └── python3.10
+    ├── lib64 -> lib
+    ├── pyvenv.cfg
+    └── share
+        └── jupyter
+
+16 directories, 45 files
