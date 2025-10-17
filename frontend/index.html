@@ -4,20 +4,135 @@
     <meta charset="UTF-8">
     <title>PDF Chatbot</title>
     <style>
-        body { font-family: Arial; margin: 20px; }
-        #chat { border: 1px solid #ccc; padding: 10px; height: 400px; overflow-y: scroll; margin-bottom: 10px; }
-        .message { margin: 5px 0; }
-        .user { color: blue; }
-        .bot { color: green; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 900px;
+            display: flex;
+            margin-top: 50px;
+        }
+
+        .left-panel, .right-panel {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+
+        .left-panel {
+            width: 600px;
+            margin-right: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .right-panel {
+            width: 250px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        #chat {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            height: 500px;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+            margin-bottom: 15px;
+        }
+
+        .message {
+            margin: 8px 0;
+            padding: 10px 15px;
+            border-radius: 20px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+
+        .user {
+            background-color: #007bff;
+            color: #fff;
+            margin-left: auto;
+            text-align: right;
+        }
+
+        .bot {
+            background-color: #e5e5ea;
+            color: #333;
+            margin-right: auto;
+            text-align: left;
+        }
+
+        input[type="text"] {
+            width: 70%;
+            padding: 10px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            outline: none;
+            margin-right: 5px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border-radius: 20px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #pdfList {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            height: 500px;
+            overflow-y: auto;
+        }
+
+        #pdfList ul {
+            padding-left: 20px;
+        }
     </style>
 </head>
 <body>
-    <h2>PDF Chatbot</h2>
-    <input type="file" id="pdfUpload" multiple>
-    <button onclick="uploadPDFs()">Upload PDFs</button>
-    <div id="chat"></div>
-    <input type="text" id="question" placeholder="Frage..." style="width:70%">
-    <button onclick="askQuestion()">Frage stellen</button>
+    <div class="container">
+        <!-- Chatbereich -->
+        <div class="left-panel">
+            <h2>PDF Chatbot</h2>
+            <div class="file-upload">
+                <input type="file" id="pdfUpload" multiple>
+                <button onclick="uploadPDFs()">Upload PDFs</button>
+            </div>
+            <div id="chat"></div>
+            <div>
+                <input type="text" id="question" placeholder="Frage eingeben...">
+                <button onclick="askQuestion()">Frage stellen</button>
+            </div>
+        </div>
+
+        <!-- Liste der PDFs -->
+        <div class="right-panel">
+            <h2>Hochgeladene PDFs</h2>
+            <div id="pdfList"><i>Keine PDFs hochgeladen</i></div>
+        </div>
+    </div>
 
     <script src="/frontend/app.js"></script>
 </body>

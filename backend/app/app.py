@@ -1,8 +1,9 @@
 from fastapi import FastAPI, UploadFile, File, Form
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
-from app.pdf_document import PDFDocument
+from app.pdf_document import extract_text_tables_and_formulas
 from app.qa_utils import find_best_answer
+
 
 app = FastAPI(title="PDF Chatbot")
 
