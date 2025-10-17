@@ -1,6 +1,8 @@
-streamlit
-PyPDF2
-scikit-learn
-pdfplumber
 
+fastapi
+uvicorn
+pdfplumber
+PyPDF2
+pymupdf
+scikit-learn
 
